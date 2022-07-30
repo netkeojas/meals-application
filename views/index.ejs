@@ -1,0 +1,89 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Meals App</title>
+  </head>
+
+  <body>
+    <h1>Meals for today</h1>
+
+    <form action="/meal" method="POST">
+      <label for="name">Enter your full name:</label>
+      <input type="text" placeholder="Full name" name="name" required/>
+      <br>
+      <label for="phone">Enter your 10-digit contact number:</label>
+      <input type="tel" placeholder=9800121212 id="phone" name="phone" >
+      <br>
+     <label for="meals">Choose a meal:</label>
+     <select id="melas" name="meals">
+        <option value="veg">Veg</option>
+        <option value="spl_veg">Special Veg</option>
+        <option value="non_veg">Non-veg</option>
+        <option value="spl_non_veg">Special Non-veg</option>
+     </select>
+     <br>
+      <label for="quantity">Enter the quantity for your meal:</label>
+      <input type="number" placeholder=2 id="quantity" name="quantity" >
+      <br>
+
+
+    <button type="submit">Submit</button>
+    </form>
+    <br>
+    
+    <h2> Meal List </h2>
+
+<ul class="details">
+  <!-- Loop through quotes -->
+  <% for(var i = 0; i < meals.length; i++) {%>
+    <li class="details">
+      <!-- Output name from the iterated quote object -->
+      <span>Name</span>:
+      <span><%= meals[i].name %></span> ->
+      <!-- Output quote from the iterated quote object -->
+      <span>Meal Type</span>:
+      <span><%= meals[i].meal_data[0].meal_name %></span> ->
+      <span>Meal quantity</span>:
+      <span><%= meals[i].quantity %></span> ->
+      <span>Price</span>:
+      <span><%= meals[i].meal_data[0].cost %></span> ->
+      <span>Total cost</span>:
+      <span><%= meals[i].meal_data[0].cost * meals[i].quantity %></span>
+    </li>
+  <% } %>
+</ul>
+
+<h3>Total amount = </h3> <%= meals.total_amt %>
+
+
+<h2>Update meal</h2>
+
+<form action="/update_meal" method="POST">
+  <label for="name">Enter your full name:</label>
+  <input type="text" placeholder="Full name" name="name" required/>
+  <br>
+  <label for="phone">Enter your 10-digit contact number:</label>
+  <input type="tel" placeholder=9800121212 id="phone" name="phone" >
+  <br>
+ <label for="meals">Choose a meal:</label>
+ <select id="melas" name="meals">
+    <option value="veg">Veg</option>
+    <option value="spl_veg">Special Veg</option>
+    <option value="non_veg">Non-veg</option>
+    <option value="spl_non_veg">Special Non-veg</option>
+ </select>
+ <br>
+  <label for="quantity">Enter the quantity for your meal:</label>
+  <input type="number" placeholder=2 id="quantity" name="quantity" >
+  <br>
+
+
+<button type="submit">Submit</button>
+</form>
+
+
+    
+
+  </body>
